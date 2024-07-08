@@ -1,28 +1,28 @@
 <script setup>
 import { ref } from 'vue';
+import {useRouter} from "vue-router";
 const originTagList = [
   {
-    text: '浙江',
+    text: '方向',
     children: [
-      { text: '杭州', id: '杭州' },
-      { text: '温州', id: '温州' },
-      { text: '宁波', id: '宁波', disabled: true },
+      { text: 'java', id: 'java' },
+      { text: 'python', id: 'python' },
+      { text: 'c++', id: 'c++' },
     ],
   },
   {
-    text: '江苏',
+    text: '性别',
     children: [
-      { text: '南京', id: '南京'},
-      { text: '无锡', id: '无锡'},
-      { text: '徐州', id:'徐州' },
+      { text: '男', id: '男'},
+      { text: '女', id: '女'},
     ],
   },
   {
-    text: '宁夏',
+    text: '学历',
     children: [
-      { text: '固原', id: '固原'},
-      { text: '银川', id: '银川'},
-      { text: '吴忠', id: '吴忠'},
+      { text: '专科', id: 'c++'},
+      { text: '本科', id: '本科'},
+      { text: '硕士', id: '硕士'},
     ],
   },
 ];
@@ -58,7 +58,15 @@ const doClose = (tag) => {
     return item !== tag;
   })
 }
-
+const router = useRouter();
+const  doSearchResult = () =>{
+  router.push({
+    path: 'user/list',
+    query:{
+      tags: activeIds.value,
+    }
+  })
+}
 </script>
 
 <template>
@@ -88,6 +96,9 @@ const doClose = (tag) => {
       v-model:main-active-index="activeIndex"
       :items="tagList"
   />
+<div style="padding: 20px">
+  <van-button type="primary" block @click="doSearchResult">搜索</van-button>
+</div>
 </template>
 
 

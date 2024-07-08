@@ -2,15 +2,17 @@
 import {useRouter} from "vue-router";
 
 const user = {
-  id: 1,
-  username: '路文斌',
-  userAccount: 'lwb214',
-  avatarUrl: 'https://github.com/guofei9987/blind_watermark/blob/master/docs/%E6%89%93%E4%B8%8A%E6%B0%B4%E5%8D%B0%E7%9A%84%E5%9B%BE.jpg',
-  gender: '男',
-  phone: '123112312',
-  email: '12345@qq.com',
-  planetCode: '1234',
-  createTime: new Date(),
+    id: 1,
+    username: '路文斌',
+    userAccount: 'lwb214',
+    profile: '就是喜欢和擦次啊scab此次京东派到结尾华为哦觉得好玩i服从和我 单位Ohio而无法和我经常访问欧锦',
+    avatarUrl: 'https://wx.zsxq.com/dweb2/assets/images/emoji/%E6%97%BA%E6%9F%B4.png',
+    gender: '男',
+    phone: '123112312',
+    email: '12345@qq.com',
+    planetCode: '1234',
+    tags: ['java', 'python', 'c++','emo','男','本科'],
+    createTime: new Date(),
 }
 const router = useRouter();
 const toEdit = (editKey: string, editName: string,currentValue: string) => {
