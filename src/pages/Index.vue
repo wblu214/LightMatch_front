@@ -7,9 +7,10 @@ const userList = ref([]);
 
 onMounted(async () => {
   const userListData =  await myAxios.get('/user/recommend')
+
       .then(function (response) {
         console.log('user/searchByTags 请求成功', response)
-        return response.data?.data;
+        return response?.data?.data.records;
       })
       .catch(function (error) {
         console.log('user/searchByTags 请求失败', error);

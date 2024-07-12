@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {useRoute, useRouter} from "vue-router";
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import myAxios from "@/plugins/myAxios";
 import {showFailToast, showSuccessToast} from "vant";
 import {getCurrentUser} from "@/service/user";
@@ -12,21 +12,20 @@ const editUser = ref({
   editName: route.query.editName,
   currentValue: route.query.currentValue
 })
-const user = ref();
-user.value= getCurrentUser();
-console.log(user.value)
+
 const onSubmit =  async () => {
-  if(!user.value) {
+  const currentUser =  await getCurrentUser();
+  if(!currentUser) {
     showFailToast("请先登录");
     return;
   }
   const res = await myAxios.post("/user/update", {
-    'id':user.value.id,
+    "id":currentUser.id,
     [editUser.value.editKey]: editUser.value.currentValue
   })
   console.log("更新请求")
-  if(res.data > 0) {
-    showSuccessToast("更新成功");
+  if(res.data.code === 20000) {
+    showSuccessToast("更新成功")
     router.back();
   }else{
     showFailToast("更新失败");
