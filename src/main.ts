@@ -5,7 +5,6 @@ import App from './App.vue'
 import Vant from 'vant';
 import * as VueRouter from 'vue-router'
 import routes from "./config/route.js";
-
  const app = createApp(App);
  app.use(Vant);
  app.use(ref);

@@ -1,8 +1,9 @@
 <script setup>
 import {useRouter} from "vue-router";
 import {onMounted, ref} from 'vue';
-import myAxios from "@/plugins/myAxios.js";
+import myAxios from "@/plugins/myAxios.ts";
 import qs from 'qs';
+import UserCard from "@/components/UserCard.vue";
 const router = useRouter();
 
 const {tags} = router.currentRoute.value.query;
@@ -37,21 +38,8 @@ onMounted(async () => {
 </script>
 
 <template>
-  <van-card
-      v-for="user in userList"
-      :desc="user.profile"
-      :title="user.username"
-      :thumb="user.imageUrl"
-  >
-    <template #tags>
-      <van-tag plain type="primary" v-for="tag in user.tags" style="margin-right: 8px;margin-top: 5px" >
-        {{ tag }}
-      </van-tag>
-    </template>
-    <template #footer>
-      <van-button size="mini">联系Ta</van-button>
-    </template>
-  </van-card>
+  <UserCard :user-list="userList" />
+  <van-empty image="search" v-if="!userList || userList.length < 1" description="搜索内容为空" />
 
 </template>
 
