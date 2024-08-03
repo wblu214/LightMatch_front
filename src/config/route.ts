@@ -6,10 +6,12 @@ import Search from "../pages/Search.vue";
 import UserEdit from "../pages/UserEdit.vue";
 import SearchResult from "../pages/SearchResult.vue";
 import Login from "@/pages/Login.vue";
+import TeamAdd from "@/pages/TeamAdd.vue";
 
 const routes =[
     {path :'/', component: Login },
     {path: '/team',component: Team },
+    {path: '/team/add',component: TeamAdd },
     {path: '/user',component: User },
     {path: '/search',component: Search },
     {path: '/user/edit',component: UserEdit },
