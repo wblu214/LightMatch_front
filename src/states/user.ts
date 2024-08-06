@@ -1,8 +1,8 @@
-import {UserType} from "@/models/user";
+import {TeamType} from "@/models/user";
 
-let currentUser: UserType = null;
+let currentUser: TeamType = null;
 
-const setCurrentUserState = (user:UserType) => {
+const setCurrentUserState = (user:TeamType) => {
     currentUser = user;
 }
 const getCurrentUserState = () => {
