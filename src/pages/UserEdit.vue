@@ -31,9 +31,6 @@ const onSubmit =  async () => {
     showFailToast("更新失败");
   }
 };
-
-console.log(route.query)
-console.log(route.params)
 </script>
 
 <template>

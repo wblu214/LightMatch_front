@@ -7,17 +7,10 @@
   import {showFailToast, showSuccessToast} from "vant";
 
   const router = useRouter();
-  const doCreateTeam = () => {
-    router.push({
-      path: '/team/add'
-    })
-  }
   const teamList = ref([]);
-  const searchText = ref('');
-
 
   const listTeams = async (val='') => {
-    const  res = await myAxios.get('/team/list',{
+    const  res = await myAxios.get('/team/list/my/create',{
       params:{
         searchText:val,
         pageNum:1,
@@ -34,26 +27,13 @@
   onMounted(async () => {
     await listTeams();
   })
-  const onSearch = (val='') => {
-   listTeams(val);
-  }
 </script>
 
 <template>
   <div id="Team">
-    <van-search
-        v-model="searchText"
-        shape="round"
-        background='#4fc08d'
-        placeholder="搜索队伍"
-        @search="onSearch"
-    />
-    <van-button type="primary" @click="doCreateTeam">创建队伍</van-button>
     <TeamCard :team-list="teamList" />
     <van-empty description="没有搜到相关的队伍" v-if="teamList?.length < 1" />
   </div>
-
-
 </template>
 
 <style scoped>
