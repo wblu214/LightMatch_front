@@ -2,6 +2,7 @@
 import {onMounted, ref} from 'vue';
 import myAxios from "@/plugins/myAxios.ts";
 import UserCard from "@/components/UserCard.vue";
+import {showFailToast, showSuccessToast} from "vant";
 
 const userList = ref([]);
 
@@ -9,10 +10,12 @@ onMounted(async () => {
   const userListData =  await myAxios.get('/user/recommend')
 
       .then(function (response) {
+        showSuccessToast('用户信息加载成功');
         console.log('user/searchByTags 请求成功', response)
         return response?.data?.data.records;
       })
       .catch(function (error) {
+        showFailToast("用户信息加载失败")
         console.log('user/searchByTags 请求失败', error);
       })
   if(userListData){

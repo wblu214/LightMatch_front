@@ -4,12 +4,26 @@ import {onMounted, Ref, ref} from "vue";
 import {getCurrentUser} from "@/service/user";
 
 const user = ref();
+
+
 const router = useRouter();
 
 onMounted(async() => {
   user.value =  await getCurrentUser();
+  getGender();
 })
-
+const getGender = ()=> {
+  if(user.value.gender === 1) {
+    user.value.gender = '男';
+    console.log(user.value.gender);
+  } else if(user.value.gender === 0) {
+    user.value.gender = '女';
+    console.log(user.value.gender);
+  } else {
+    user.value.gender = '未知';
+    console.log(user.value.gender);
+  }
+};
 const toEdit = (editKey: string, editName: string,currentValue: string) => {
   router.push({
     path: 'user/edit',
