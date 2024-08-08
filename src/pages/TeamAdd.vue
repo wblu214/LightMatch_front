@@ -13,7 +13,8 @@ const initFormData={
   "expireTime": null,
   "userId": 0,
   "status": 0,
-  "password": ""
+  "password": "",
+  "imageUrl": "",
 }
 const showCalendar = ref(false);
 
@@ -52,6 +53,13 @@ const onSubmit = async () => {
           label="队伍名"
           placeholder="请填写队伍名"
           :rules="[{ required: true, message: '请填写队伍名' }]"
+      />
+      <van-field
+          v-model="addTeamData.imageUrl"
+          name="name"
+          label="头像"
+          placeholder="请上传头像"
+          :rules="[{ required: true, message: '请上传头像' }]"
       />
       <van-field
           v-model="addTeamData.description"

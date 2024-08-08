@@ -8,15 +8,15 @@ import {useRouter} from "vue-router";
     const userAccount = ref('');
     const userPassword = ref('');
     const onSubmit = async () => {
-      const  res = myAxios.post('/user/login',
+      const  res = await myAxios.post('/user/login',
           {
         userAccount: userAccount.value,
         userPassword: userPassword.value
       })
-      if ((await res).data){
-        showSuccessToast("登录成功");
+      if (res.data.code === 20000) {
         await router.replace('/index');
-      }else {
+        showSuccessToast("登录成功");
+      } else {
         showFailToast("登录失败");
       }
     }
