@@ -10,7 +10,7 @@ export const getCurrentUser = async () => {
     // 不存在则从远程获取
     const res = await myAxios.get('/user/current');
     if (res.data.code ===20000 ) {
-        showSuccessToast("个人信息加载成功")
+        // showSuccessToast("个人信息加载成功")
         return res.data.data;
     }else{
         showFailToast("加载失败,请重新登录");

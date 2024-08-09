@@ -4,8 +4,6 @@ import {onMounted, Ref, ref} from "vue";
 import {getCurrentUser} from "@/service/user";
 
 const user = ref();
-
-
 const router = useRouter();
 
 onMounted(async() => {
@@ -40,7 +38,7 @@ const toEdit = (editKey: string, editName: string,currentValue: string) => {
 <template>
   <template v-if="user">
     <van-cell title="昵称" is-link :value="user.username" @click="toEdit('username','昵称',user.username)"/>
-    <van-cell title="头像" is-link @click="toEdit('avatarUrl','头像',user.imageUrl)">
+    <van-cell title="头像" is-link @click="toEdit('imageUrl','头像',user.imageUrl)">
       <img style="height: 40px;" :src="user.imageUrl" alt="加载失败"/>
     </van-cell>
     <van-cell title="性别" is-link :value="user.gender" @click="toEdit('gender','性别',user.gender)"/>

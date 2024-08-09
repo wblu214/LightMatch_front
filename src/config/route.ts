@@ -11,9 +11,17 @@ import TeamUpdate from "@/pages/TeamUpdate.vue";
 import TeamMyCreate from "@/pages/TeamMyCreate.vue";
 import TeamMyJoin from "@/pages/TeamMyJoin.vue";
 import Me from "@/pages/Me.vue";
+import Register from "@/pages/Register.vue";
 
 const routes =[
-    {path :'/', component: Login },
+    {path :'/', component: Login , meta:{
+            showTabbar: true
+        }
+    },
+    {path: '/register',component: Register, meta:{
+            showTabbar: true
+        }
+    },
     {path: '/team',component: Team },
     {path: '/team/add',component: TeamAdd },
     {path: '/team/update',component: TeamUpdate },

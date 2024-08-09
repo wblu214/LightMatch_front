@@ -17,3 +17,4 @@ const router = VueRouter.createRouter({
 app.use(router)
 //挂载
 app.mount('#app')
+

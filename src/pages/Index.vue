@@ -10,7 +10,7 @@ onMounted(async () => {
   const userListData =  await myAxios.get('/user/recommend')
 
       .then(function (response) {
-        showSuccessToast('用户信息加载成功');
+        // showSuccessToast('用户信息加载成功');
         console.log('user/searchByTags 请求成功', response)
         return response?.data?.data.records;
       })

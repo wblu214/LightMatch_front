@@ -18,7 +18,7 @@
     });
     if (res.data.code === 20000) {
       teamList.value = res.data.data;
-      showSuccessToast("队伍加载成功");
+      // showSuccessToast("队伍加载成功");
     } else {
       showFailToast("队伍加载失败，请刷新重试");
     }

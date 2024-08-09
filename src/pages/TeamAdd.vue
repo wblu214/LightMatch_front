@@ -37,7 +37,7 @@ const onSubmit = async () => {
          replace: true,
        });
      }else{
-        showFailToast("创建队伍失败");
+        showFailToast(res.data.msg);
      }
 }
 
