@@ -28,7 +28,7 @@ const onSubmit =  async () => {
     showSuccessToast("更新成功")
     router.back();
   }else{
-    showFailToast("更新失败");
+    showFailToast(res.data.msg);
   }
 };
 </script>
