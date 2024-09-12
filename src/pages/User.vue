@@ -25,20 +25,30 @@ const getGender = ()=> {
 const toEdit = (editKey: string, editName: string,currentValue: string) => {
   router.push({
     path: 'user/edit',
-    query:{
+    query: {
       editKey,
       editName,
       currentValue
     }
   })
-}
+};
+const toEditImage = (editKey: string, editName: string, currentValue: string) => {
+    router.push({
+      path: 'user/image',
+      query: {
+        editKey,
+        editName,
+        currentValue
+      }
+  })
+};
 
 </script>
 
 <template>
   <template v-if="user">
     <van-cell title="昵称" is-link :value="user.username" @click="toEdit('username','昵称',user.username)"/>
-    <van-cell title="头像" is-link @click="toEdit('imageUrl','头像',user.imageUrl)">
+    <van-cell title="头像" is-link @click="toEditImage('imageUrl','头像',user.imageUrl)">
       <img style="height: 40px;" :src="user.imageUrl" alt="加载失败"/>
     </van-cell>
     <van-cell title="性别" is-link :value="user.gender" @click="toEdit('gender','性别',user.gender)"/>

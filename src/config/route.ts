@@ -12,6 +12,7 @@ import TeamMyCreate from "@/pages/TeamMyCreate.vue";
 import TeamMyJoin from "@/pages/TeamMyJoin.vue";
 import Me from "@/pages/Me.vue";
 import Register from "@/pages/Register.vue";
+import ImageEdit from "@/pages/ImageEdit.vue";
 
 const routes =[
     {path :'/', component: Login , meta:{
@@ -30,6 +31,7 @@ const routes =[
     {path: '/user',component: User },
     {path: '/user/me',component: Me },
     {path: '/user/edit',component: UserEdit },
+    {path: '/user/image',component: ImageEdit },
     {path: '/user/list',component: SearchResult },
     {path: '/search',component: Search },
     {path: '/index',component: Index },
