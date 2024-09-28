@@ -18,13 +18,26 @@ const initFormData={
 }
 const showCalendar = ref(false);
 
+const fileList = ref([]);
+let imageUrl = "";
+const afterRead = async (file) => {
+  // 此时可以自行将文件上传至服务器
+  fileList.value = [file];
+  const formData = new FormData();
+  formData.append('file', fileList.value[0].file);
+  const imageMsg = await myAxios.post("/user/uploadImage", formData)
+  imageUrl = imageMsg.data.data;
+};
+
 //用户填写的表单数据
 const addTeamData = ref({...initFormData});
 const onConfirm = (date) => {
   addTeamData.value.expireTime = date.toLocaleString('zh').replaceAll('/', '-');
+  addTeamData.value.imageUrl = imageUrl;
   console.log("onConfirm", addTeamData.value);
   showCalendar.value = false;
 };
+
 // 提交
 const onSubmit = async () => {
   console.log("onSubmit", addTeamData.value);
@@ -48,18 +61,23 @@ const onSubmit = async () => {
   <van-form @submit="onSubmit">
     <van-cell-group inset>
       <van-field
-          v-model="addTeamData.name"
-          name="name"
-          label="队伍名"
-          placeholder="请填写队伍名"
-          :rules="[{ required: true, message: '请填写队伍名' }]"
-      />
-      <van-field
           v-model="addTeamData.imageUrl"
           name="name"
           label="头像"
           placeholder="请上传头像"
           :rules="[{ required: true, message: '请上传头像' }]"
+          @click="toEditImage"
+      />
+      <div style="margin-left:120px;margin-top:20px">队伍头像</div>
+      <div style="margin-left:110px;margin-top:20px">
+        <van-uploader v-model="fileList" multiple :after-read="afterRead" :max-count="1" upload-text="点击这里上传"/>
+      </div>
+      <van-field
+          v-model="addTeamData.name"
+          name="name"
+          label="队伍名"
+          placeholder="请填写队伍名"
+          :rules="[{ required: true, message: '请填写队伍名' }]"
       />
       <van-field
           v-model="addTeamData.description"

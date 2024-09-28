@@ -18,13 +18,6 @@ let imageUrl = editUser.value.currentValue;
 const afterRead = async (file) => {
   // 此时可以自行将文件上传至服务器
   fileList.value = [file];
-  const formData = new FormData();
-  formData.append('file', fileList.value[0].file);
-  const res1 = await myAxios.post("/user/uploadImage", formData)
-  imageUrl = res1.data.data;
-  console.log(res1);
-  console.log(imageUrl);
-
 };
 
 const onSubmit =  async () => {
@@ -32,7 +25,20 @@ const onSubmit =  async () => {
   if(!currentUser) {
     showFailToast("请先登录");
     return;
-}
+  }
+
+  const formData = new FormData();
+  formData.append('file', fileList.value[0].file);
+  // const imageUploadReq = ref({
+  //   id: currentUser.id,
+  //   username: currentUser.username,
+  //   account: currentUser.account,
+  //   code: currentUser.code,
+  //   imageType: "USER",
+  //   file: formData
+  // })
+  const imageMsg = await myAxios.post("/user/uploadImage", formData)
+  imageUrl = imageMsg.data.data;
   const res = await myAxios.post("/user/update", {
     "id":currentUser.id,
     [editUser.value.editKey]: imageUrl
@@ -49,7 +55,7 @@ const onSubmit =  async () => {
 
 <template>
   <van-form @submit="onSubmit">
-    <div style="margin-left:120px;margin-top:20px">用户头像</div>
+    <div style="margin-left:120px;margin-top:20px">图片上传</div>
     <div style="margin-left:110px;margin-top:20px">
     <van-uploader v-model="fileList" multiple :after-read="afterRead" :max-count="1" upload-text="点击这里上传"/>
     </div>
