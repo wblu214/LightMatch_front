@@ -11,9 +11,18 @@ import TeamUpdate from "@/pages/TeamUpdate.vue";
 import TeamMyCreate from "@/pages/TeamMyCreate.vue";
 import TeamMyJoin from "@/pages/TeamMyJoin.vue";
 import Me from "@/pages/Me.vue";
+import Register from "@/pages/Register.vue";
+import ImageEdit from "@/pages/ImageEdit.vue";
 
 const routes =[
-    {path :'/', component: Login },
+    {path :'/', component: Login , meta:{
+            showTabbar: true
+        }
+    },
+    {path: '/register',component: Register, meta:{
+            showTabbar: true
+        }
+    },
     {path: '/team',component: Team },
     {path: '/team/add',component: TeamAdd },
     {path: '/team/update',component: TeamUpdate },
@@ -22,6 +31,7 @@ const routes =[
     {path: '/user',component: User },
     {path: '/user/me',component: Me },
     {path: '/user/edit',component: UserEdit },
+    {path: '/user/image',component: ImageEdit },
     {path: '/user/list',component: SearchResult },
     {path: '/search',component: Search },
     {path: '/index',component: Index },

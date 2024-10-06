@@ -13,17 +13,31 @@ const initFormData={
   "expireTime": null,
   "userId": 0,
   "status": 0,
-  "password": ""
+  "password": "",
+  "imageUrl": "",
 }
 const showCalendar = ref(false);
+
+const fileList = ref([]);
+let imageUrl = "";
+const afterRead = async (file) => {
+  // 此时可以自行将文件上传至服务器
+  fileList.value = [file];
+  const formData = new FormData();
+  formData.append('file', fileList.value[0].file);
+  const imageMsg = await myAxios.post("/user/uploadImage", formData)
+  imageUrl = imageMsg.data.data;
+};
 
 //用户填写的表单数据
 const addTeamData = ref({...initFormData});
 const onConfirm = (date) => {
   addTeamData.value.expireTime = date.toLocaleString('zh').replaceAll('/', '-');
+  addTeamData.value.imageUrl = imageUrl;
   console.log("onConfirm", addTeamData.value);
   showCalendar.value = false;
 };
+
 // 提交
 const onSubmit = async () => {
   console.log("onSubmit", addTeamData.value);
@@ -36,7 +50,7 @@ const onSubmit = async () => {
          replace: true,
        });
      }else{
-        showFailToast("创建队伍失败");
+        showFailToast(res.data.msg);
      }
 }
 
@@ -46,6 +60,10 @@ const onSubmit = async () => {
 <div id="TeamAdd">
   <van-form @submit="onSubmit">
     <van-cell-group inset>
+      <div style="margin-left:120px;margin-top:20px">队伍头像</div>
+      <div style="margin-left:110px;margin-top:20px">
+        <van-uploader v-model="fileList" multiple :after-read="afterRead" :max-count="1" upload-text="点击这里上传"/>
+      </div>
       <van-field
           v-model="addTeamData.name"
           name="name"

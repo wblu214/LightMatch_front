@@ -15,7 +15,6 @@
   const teamList = ref([]);
   const searchText = ref('');
 
-
   const listTeams = async (val='') => {
     const  res = await myAxios.get('/team/list',{
       params:{
@@ -25,9 +24,9 @@
     });
     if (res.data.code === 20000) {
       teamList.value = res.data.data;
-      showSuccessToast("队伍加载成功");
+      // showSuccessToast("队伍加载成功");
     } else {
-      showFailToast("队伍加载失败，请刷新重试");
+      showFailToast(res.data.msg);
     }
   }
 
@@ -49,7 +48,7 @@
         @search="onSearch"
     />
     <van-button type="primary" @click="doCreateTeam">创建队伍</van-button>
-    <TeamCard :team-list="teamList" />
+    <TeamCard :team-list="teamList"/>
     <van-empty description="没有搜到相关的队伍" v-if="teamList?.length < 1" />
   </div>
 

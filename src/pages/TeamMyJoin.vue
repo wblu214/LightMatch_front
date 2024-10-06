@@ -8,7 +8,7 @@
 
   const router = useRouter();
   const teamList = ref([]);
-  const listTeams = async (val='') => {
+  const listJoinTeams = async (val='') => {
     const  res = await myAxios.get('/team/list/my/join',{
       params:{
         searchText:val,
@@ -24,7 +24,7 @@
   }
 
   onMounted(async () => {
-    await listTeams();
+    await listJoinTeams();
   })
 </script>
 
