@@ -15,7 +15,7 @@ const editUser = ref({
 
 const fileList = ref([]);
 let imageUrl = editUser.value.currentValue;
-const afterRead = async (file) => {
+const afterRead = async (file) => {0
   // 此时可以自行将文件上传至服务器
   fileList.value = [file];
 };
@@ -29,14 +29,6 @@ const onSubmit =  async () => {
 
   const formData = new FormData();
   formData.append('file', fileList.value[0].file);
-  // const imageUploadReq = ref({
-  //   id: currentUser.id,
-  //   username: currentUser.username,
-  //   account: currentUser.account,
-  //   code: currentUser.code,
-  //   imageType: "USER",
-  //   file: formData
-  // })
   const imageMsg = await myAxios.post("/user/uploadImage", formData)
   imageUrl = imageMsg.data.data;
   const res = await myAxios.post("/user/update", {

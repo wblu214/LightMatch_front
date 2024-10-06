@@ -60,14 +60,6 @@ const onSubmit = async () => {
 <div id="TeamAdd">
   <van-form @submit="onSubmit">
     <van-cell-group inset>
-      <van-field
-          v-model="addTeamData.imageUrl"
-          name="name"
-          label="头像"
-          placeholder="请上传头像"
-          :rules="[{ required: true, message: '请上传头像' }]"
-          @click="toEditImage"
-      />
       <div style="margin-left:120px;margin-top:20px">队伍头像</div>
       <div style="margin-left:110px;margin-top:20px">
         <van-uploader v-model="fileList" multiple :after-read="afterRead" :max-count="1" upload-text="点击这里上传"/>
